@@ -9,6 +9,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 @RunWith(MockitoJUnitRunner.class)
 public class LionTest {
@@ -28,5 +29,10 @@ public class LionTest {
         Lion lion = new Lion("Самец", feline);
         Mockito.when(feline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
         assertEquals(List.of("Животные", "Птицы", "Рыба"), lion.getFood());
+    }
+
+    @Test
+    public void lionConstructorThrowsExceptionForInvalidSex() {
+        assertThrows(Exception.class, () -> new Lion("Кот", feline));
     }
 }
